@@ -1,6 +1,7 @@
 """Subtitle aligner
 
 arguments:  <reference-file> <target-file> <output-filename>
+            [lang-target=fr] [lang-reference=en]
 
 The target file will be shifted to correspond to the reference file. The output
 will be written to an external file under the SRT format.
@@ -48,15 +49,21 @@ def shift(subs, offset):
         sub.stop = sub.stop + offset
     return new_subs
 
-def align(tgt, ref, filename, lang_tgt="fr", lang_ref="en"):
+def align(tgt, ref, filename, lang_tgt, lang_ref):
     tsl = translate(tgt, 20, lang_tgt, lang_ref)
     shift(tgt, offset(tsl, ref)).save(filename)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
+    if len(sys.argv) not in [4, 5, 6]:
         print(__doc__)
         exit()
-    ref_file, tgt_file, out_file = sys.argv[1:]
+    ref_file, tgt_file, out_file = sys.argv[1:4]
     ref = Subtitles.from_file(ref_file)
     tgt = Subtitles.from_file(tgt_file)
-    align(tgt, ref, out_file)
+    lang_tgt, lang_ref = "fr", "en"
+    for i in [4, 5]:
+        if "lang-target" in sys.argv[i]:
+            lang_tgt = sys.argv[i].split("=")[1]
+        elif "lang-reference" in sys.argv[i]:
+            lang_ref = sys.argv[i].split("=")[1]
+    align(tgt, ref, out_file, lang_tgt, lang_ref)
