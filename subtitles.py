@@ -51,11 +51,9 @@ class Subtitles:
                         break
                 break
         print("Extracting track", track, "from MKV file into 'tmp.srt'")
-        extract = subprocess.Popen(
-                    ["mkvextract", "tracks", path, "{}:tmp.srt".format(track)],
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE)
-        extract.wait()
+        extract = subprocess.call(
+                    ["mkvextract", "tracks", path, "{}:tmp.srt".format(track)]
+                )
         subs = Subtitles.from_srt("tmp.srt")
         print("Removing 'tmp.srt'")
         os.remove("tmp.srt")

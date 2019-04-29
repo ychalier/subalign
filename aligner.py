@@ -58,12 +58,12 @@ if __name__ == "__main__":
         print(__doc__)
         exit()
     ref_file, tgt_file, out_file = sys.argv[1:4]
-    ref = Subtitles.from_file(ref_file)
-    tgt = Subtitles.from_file(tgt_file)
     lang_tgt, lang_ref = "fr", "en"
-    for i in [4, 5]:
+    for i in range(4, len(sys.argv)):
         if "lang-target" in sys.argv[i]:
             lang_tgt = sys.argv[i].split("=")[1]
         elif "lang-reference" in sys.argv[i]:
             lang_ref = sys.argv[i].split("=")[1]
+    ref = Subtitles.from_file(ref_file)
+    tgt = Subtitles.from_file(tgt_file)
     align(tgt, ref, out_file, lang_tgt, lang_ref)
