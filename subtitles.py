@@ -4,6 +4,8 @@ import re
 import os
 
 from subtitle import Subtitle
+from word_list import WordList
+from word import Word
 
 class Subtitles:
 
@@ -29,6 +31,19 @@ class Subtitles:
         print("Saving to", filename)
         with codecs.open(filename, "w", "utf-8") as file:
             file.write(str(self))
+
+    def to_word_list(self):
+        wl = WordList()
+        for sub in self.data:
+            for token in sub.tokenize():
+                wl.append(Word(
+                    len(wl),
+                    int(sub.start),
+                    int(sub.stop),
+                    token,
+                    sub.id
+                ))
+        return wl
 
     def from_srt(path):
         print("Loading SRT file at", path)

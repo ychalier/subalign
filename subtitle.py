@@ -1,13 +1,10 @@
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
+import re
+
 from timestamp import Timestamp
 
-def tokenize(text):
-    tokens = set()
-    for word in text.replace("\n", "").split(" "):
-        if word == "":
-            continue
-        else:
-            tokens.add(word.lower())
-    return tokens
+stemmer = PorterStemmer()
 
 class Subtitle:
 
@@ -16,17 +13,29 @@ class Subtitle:
         self.start = Timestamp()
         self.stop = Timestamp()
         self.text = ""
+        self.clean_text = ""
 
     def __str__(self):
         text = str(self.id) + "\n"
         text += "{} --> {}\n".format(self.start, self.stop)
         text += self.text
+        text += "\n"
         return text
 
-    def sim(self, other):
-        a = tokenize(self.text)
-        b = tokenize(other.text)
-        return float(len(a.intersection(b))) / float(len(a.union(b)))
+    def clean(self):
+        text = re.sub("<.*?>", "", self.text)
+        text = re.sub("[A-Z ]+:", "", text)
+        text = re.sub("\(.*?\)", "", text)
+        text = re.sub("\[.*?\]", "", text)
+        self.clean_text = text.lower()
+
+    def tokenize(self):
+        self.clean()
+        return [
+            stemmer.stem(token)
+            for token in word_tokenize(self.clean_text)
+            if token not in list(",.!?;:") + ["..."]
+        ]
 
     def from_text(string):
         subtitle = Subtitle()

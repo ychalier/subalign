@@ -125,3 +125,4 @@ dmypy.json
 # Subtitle & video files
 *.mkv
 *.srt
+asset/

@@ -1,9 +1,13 @@
-def fill(int, digits=2):
-    return "0" * (digits - len(str(int))) + str(int)
+def padd(base, filler="0", count=2):
+    return filler * (count - len(str(base))) + str(base)
 
 class Timestamp:
 
     def __init__(self, time=0):
+        self.set(time)
+
+    def set(self, time):
+        time = int(time)
         self.h = time // 3600000
         time = time % 3600000
         self.m = time // 60000
@@ -13,20 +17,23 @@ class Timestamp:
 
     def __str__(self):
         return "{}:{}:{},{}".format(
-            fill(self.h),
-            fill(self.m),
-            fill(self.s),
-            fill(self.ms)
+            padd(self.h),
+            padd(self.m),
+            padd(self.s),
+            padd(self.ms, count=3)
         )
 
     def __add__(self, value):
-        return Timestamp(int(self) + value)
+        return Timestamp(int(self) + int(value))
 
     def __sub__(self, other):
         return int(self) - int(other)
 
     def __int__(self):
         return self.ms + self.s * 1000 + self.m * 60000 + self.h * 3600000
+
+    def sync(self, intercept, slope):
+        self.set((1 - slope) * int(self) - intercept)
 
     def from_text(string):
         ts = Timestamp()
