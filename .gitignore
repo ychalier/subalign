@@ -122,7 +122,19 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Subtitle & video files
-*.mkv
+# Subtitle & Media files
 *.srt
-asset/
+*.mkv
+*.mp4
+*.mp3
+*.wav
+*.tsv
+*.raw
+*.tsv#
+*.svg
+*.png
+draft/
+temp/
+tmp/
+data/
+stt/
