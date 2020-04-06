@@ -39,9 +39,9 @@ Python shell and writing:
 
 Pocketsphinx_ needs one model for each language. One model consists of:
 
- - One directory containing the acoustic parameters
- - One language model file (``*.lm.bin``)
- - One phoneme dictionary file (``*.dict``)
+- One directory containing the acoustic parameters
+- One language model file (``*.lm.bin``)
+- One phoneme dictionary file (``*.dict``)
 
 To install a new model, create a subfolder ``stt`` at the root directory
 of this module. Inside, put one folder per language, named with the `ISO 639-1`_
