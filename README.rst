@@ -103,6 +103,8 @@ Here is an example scenario:
 Supported Languages
 -------------------
 
+**tl;dr: Dutch, English, French, German, Greek, Italian, Portugese, Russian and Spanish.**
+
 To check for NLTK_ supported languages, go to the NLTK data folder, and look at
 the files under ``tokenizers/punkt/`` and ``corpora/stopwords``. To check for
 Pocketsphinx_ supported languages, see
