@@ -1,0 +1,7 @@
+"An automation tool for subtitles synchronisation over video."
+__version__ = "0.1.0"
+__author__ = "Yohan Chalier"
+__license__ = "MIT"
+__maintainer__ = "Yohan Chalier"
+__email__ = "yohan@chalier.fr"
+__status__ = "alpha"

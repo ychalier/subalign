@@ -1,0 +1,3 @@
+recursive-exclude subalign *.pyc
+include README.rst
+include LICENSE

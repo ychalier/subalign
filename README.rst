@@ -67,9 +67,9 @@ and ``pronounciation-dictionary.dict``. Here is an example file structure:
             ...
         subalign/
             __init__.py
-            core.py
+            __main__.py
             ...
-        subalign.py
+        main.py
         ...
 
 Pocketsphinx comes by default with an English model, that you can copy and
@@ -79,17 +79,17 @@ Do not forget to rename the files!
 Usage
 ~~~~~
 
-Run the ``subalign.py`` script. Use ``-h`` or ``--help`` flags to show
+Run the ``main.py`` script. Use ``-h`` or ``--help`` flags to show
 documentation.
 ::
 
-    usage: subalign.py [-h] [-o OUTPUT_FILE] [-rl REFERENCE_LANGUAGE]
-                       [-il INPUT_LANGUAGE] [-v] [--mkvmerge MKVMERGE]
-                       [--mkvextract MKVEXTRACT] [--ffmpeg FFMPEG]
-                       [-fc FRAGMENT_COUNT] [-fd FRAGMENT_DURATION]
-                       [-mi MAX_ITERS] [-tmp TEMP_FOLDER] [-rr] [-rt]
-                       [-sm {jaccard-index,overlap-coeff,overlap-count}] [-ks]
-                       {align,plot} reference_file input_file
+    usage: main.py [-h] [-o OUTPUT_FILE] [-rl REFERENCE_LANGUAGE]
+                   [-il INPUT_LANGUAGE] [-v] [--mkvmerge MKVMERGE]
+                   [--mkvextract MKVEXTRACT] [--ffmpeg FFMPEG]
+                   [-fc FRAGMENT_COUNT] [-fd FRAGMENT_DURATION]
+                   [-mi MAX_ITERS] [-tmp TEMP_FOLDER] [-rr] [-rt]
+                   [-sm {jaccard-index,overlap-coeff,overlap-count}] [-ks]
+                   {align,plot} reference_file input_file
 
 
 Example
