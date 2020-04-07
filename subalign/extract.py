@@ -61,9 +61,9 @@ def extract_audio_file(mkvextract, video_path, track_id, output_file):
         os.path.realpath(video_path),
         "tracks", "%s:%s" % (track_id, output_file)
     ]
-    process = subprocess.Popen(command, stdout=subprocess.PIPE)
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     process.wait()
-    output = process.stdout.read().decode("utf8").strip()
+    output = process.stderr.read().decode("utf8").strip()
     if len(output) > 0:
         logging.error(output)
 
@@ -91,5 +91,8 @@ def convert_audio_for_stt(ffmpeg, source, destination):
         "-y",
         os.path.realpath(destination),
     ]
-    process = subprocess.Popen(command, stdout=subprocess.PIPE)
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     process.wait()
+    output = process.stderr.read().decode("utf8").strip()
+    if len(output) > 0:
+        logging.error(output)
