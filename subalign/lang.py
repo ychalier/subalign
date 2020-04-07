@@ -17,6 +17,13 @@ class Language:
 
 
 LANGUAGES = {
+    "nl": Language("nl", "dut", "nl", "dutch"),
+    "en": Language("en", "eng", "en", "english"),
     "fr": Language("fr", "fre", "fr", "french"),
-    "en": Language("en", "eng", "en", "english")
+    "de": Language("de", "ger", "de", "german"),
+    "el": Language("el", "gre", "el", "greek"),
+    "it": Language("it", "ita", "it", "italian"),
+    "pt": Language("pt", "por", "pt", "portuguese"),
+    "ru": Language("ru", "rus", "ru", "russian"),
+    "es": Language("es", "spa", "es", "spanish"),
 }
